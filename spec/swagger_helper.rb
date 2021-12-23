@@ -14,6 +14,22 @@ RSpec.configure do |config|
       paths: {},
       components: {
         schemas: {
+          template: {
+            type: :object,
+            properties: {
+              type: { type: :string },
+              id: { type: :string },
+              attributes: {
+                type: :object,
+                properties: {
+                  name: { type: :string },
+                  content: { type: :string },
+                  create_at: { type: :string },
+                  update_at: { type: :string }
+                }
+              }
+            }
+          }
         }
       },
       servers: [

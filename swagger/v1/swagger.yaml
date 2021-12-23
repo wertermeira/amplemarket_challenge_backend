@@ -1,0 +1,159 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/templates":
+    get:
+      summary: List all templates
+      tags:
+      - Templates
+      responses:
+        '200':
+          description: templates found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      "$ref": "#/components/schemas/template"
+    post:
+      summary: Create a template
+      tags:
+      - Templates
+      parameters: []
+      responses:
+        '201':
+          description: template created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/template"
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    content:
+                      type: string
+                  required:
+                  - name
+                  - content
+  "/templates/{id}":
+    get:
+      summary: Retrieve a template
+      tags:
+      - Templates
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: template found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/template"
+        '404':
+          description: template not found
+    patch:
+      summary: Update a template
+      tags:
+      - Templates
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '202':
+          description: template updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    "$ref": "#/components/schemas/template"
+        '404':
+          description: template not found
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                template:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    content:
+                      type: string
+                  required:
+                  - name
+                  - content
+    delete:
+      summary: Delete a template
+      tags:
+      - Templates
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: template deleted
+        '404':
+          description: template not found
+components:
+  schemas:
+    template:
+      type: object
+      properties:
+        type:
+          type: string
+        id:
+          type: string
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+            content:
+              type: string
+            create_at:
+              type: string
+            update_at:
+              type: string
+servers:
+- url: http://localhost:3000
+  variables:
+    defaultHost:
+      default: http://localhost:3000

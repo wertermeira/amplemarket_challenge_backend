@@ -39,9 +39,6 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.include FactoryBot::Syntax::Methods
   config.include ActiveSupport::Testing::TimeHelpers
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.file_fixture_path =  "#{::Rails.root}/spec/support/fixtures"
-  config.include ActiveJob::TestHelper, type: :job
   config.use_transactional_fixtures = true
 
   config.infer_spec_type_from_file_location!
