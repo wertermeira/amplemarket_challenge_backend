@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :template do
-    name { 'MyString' }
-    content { 'MyText' }
+    name { Faker::Lorem.sentence }
+    content { Faker::Lorem.paragraph }
   end
 end

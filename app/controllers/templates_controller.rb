@@ -2,7 +2,7 @@ class TemplatesController < ApplicationController
   before_action :set_template, only: %i[show update destroy]
 
   def index
-    @templates = Template.all
+    @templates = Template.all.order(created_at: :desc)
     render json: @templates, serializer_each: TemplateSerializer, status: :ok
   end
 
